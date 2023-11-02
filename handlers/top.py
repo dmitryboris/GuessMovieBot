@@ -1,5 +1,5 @@
 from aiogram import Router, F, types
-from aiogram.types import FSInputFile
+from aiogram.types import FSInputFile, InputMediaPhoto
 from keyboards.back import get_back_kb
 
 router = Router()
@@ -11,5 +11,5 @@ async def top(callback: types.CallbackQuery):
     image = FSInputFile('img/top.png')
     caption = 'Список лучших:'
     # res = await get_best_and_player() 10 order_by rating and player
-    await callback.message.edit_caption(caption=caption, reply_markup=keyboard, image=image)
+    await callback.message.edit_media(InputMediaPhoto(media=image, caption=caption), reply_markup=keyboard)
 

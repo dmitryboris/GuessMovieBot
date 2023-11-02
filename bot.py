@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiologger.loggers.json import JsonLogger
 from dotenv import load_dotenv, find_dotenv
 from data import db_session
-from handlers import start, top, about
+from handlers import start, top, about, start_game
 
 load_dotenv(find_dotenv())
 
@@ -23,7 +23,7 @@ async def main():
     await bot.set_my_description(description=description)
 
     dp = Dispatcher()
-    dp.include_routers(start.router, top.router, about.router)
+    dp.include_routers(start.router, top.router, about.router, start_game.router)
 
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
